@@ -1,0 +1,199 @@
+5.2 Discworld
+=============
+
+Big changes afoot for Disc by a revamp of our mastery. Let us take a look at how they would affect us! First, a recap:
+
+*Currently in live*
+    1. Mastery buffs our shields at a rate of an extra 2.5% per 600 rating.
+    2. Divine Aegis is on top of half of the doubled heal that a crit produces.
+    3. PW:S cannot crit.
+*Soon to be in the PTR*
+    1. Mastery buffs our healing at a rate of an extra 0.8% per 600 rating, and also our shields at twice that rate (1.6%).
+    2. Disc's heals would no longer do double the healing. Instead, a crit heal will simply provide a Divine Aegis shield equal to the heal, scaled by the shield part of our mastery.
+    3. PW:S can crit.
+
+If all you care about is knowing if you should stack crit or mastery, without any explanations at all, look at the very end of the `TL;DR`_. I do hope you'll read at least part of the rest of this post however.
+
+And of course head over to `my healing calculator <http://www.healadinne.com/HealCalc/healcalc.html>`_, whose Disc computations are updated with these new changes. Just enter your stats and play around with it. Hovering over a spell's or a rotation's HPS gives you a relative weight for the various stats.
+
+Alice and Bob
+-------------
+In order to understand how crit and mastery compare now, let us imagine two disc priests. Alice focuses on Crit, and Bob focuses on Mastery. After all buffs etc, they numbers might look like this:
+
+================== =====  =====
+Stat               Alice    Bob
+================== =====  =====
+Crit                 18%     8%
+Old Mastery          40%    66%
+New Heal Mastery     13%    21%
+New Shield Mastery   26%    42%
+================== =====  =====
+
+Smaller Shields on Bigger Heals
+-------------------------------
+
+Our new mastery is divided in two components. One is an increase in the size of our heals, at a rate of 0.8% per point of mastery, i.e. 600 mastery rating. The other is an increase in the size of our shields, at double that rate. So the size of our shields relative to the heal that gave rise to them is smaller, but the heals are stronger in the first place. Those two effects more or less balance each other. Let's take a look at how that would play out:
+
+Suppose Alice spams Heal, and let's suppose that the base healing provided by it is H=20k. Under the old system, if that heal crits, it will heal for 2 * H = 40k, and also provide a DA shield for 2 * H * 0.5 * 1.4 = 28k. So the overall healing provided would be 68k. With her 18% crit rate, the average healing she would be doing would be 0.82*20k + 0.18*68k = **28.64k**.
+
+Under the new system, her base healing is increased by 13%, so her normal heals are at 22.6k. When she crits, her healing remains at 22.6k, but she now also puts a DA shield for that same amount, increased by the new shield mastery, namely for 22.6k * 1.26 = 28476. This is a total of 51k in combined effect. With her previous crit rate, she ends up with an average healing amount of 0.82*22.6k + 0.18*51k = **27.7k**.
+
+In other words for Alice the new system has decreasing her average healing by about **3%**, almost nothing. There is a big difference however, in that her regular heals are higher, and her crits are lower. Therefore crits have a smaller chance to cause overhealing. The shield component of the crit is about the same. So to summarize:
+
+- Larger regular heals, smaller crit heals
+- Small heal component on a crit, reduces overhealing
+- Same shield provided on a crit
+
+Let's look at Bob the mastery stacker now. In the old system, his crits would have placed a DA shield for 40k * 0.5 * 1.66 = 33.2k, for a total crit effect of 73.2k. At his 8% crit, this would average to 0.92 * 20k + 0.08 * 73.2k = **24.3k**. In the new system, his regular heals would be equal to 24.2k. His crits would still heal for 24.2k, and on top of that would provide a shield for 24.2k * 1.42 = 34.4k, for a total healing of **58.6k**. His average healing would be 0.92 * 24.2k + 0.08 * 58.6k = **26.95k**.
+
+So Bob will see a considerable increase in his average healing, in the order of 11%, and almost reach Alice's average healing. In other words the difference between crit and mastery for normal healing is quite minimal in the new system. While before 5.2 crit was ahead of mastery, after 5.2 they will be a lot closer to each other.
+
+Omg PW:S can crit!
+------------------
+
+These changes affect PW:S quite a bit, in two ways:
+
+- First, the shield mastery percent is lower, resulting in smaller shields in general. 
+- However, PW:S can now crit, providing twice the normal shield when it does.
+
+Let's see how this affects Alice and Bob. Suppose that with 0 mastery a shield would have been 20k. Then in the old days Alice's actual PW:S would have been 20k * 1.4 = **28k**. In the new system, it would be 20k * 1.26 = 25.2k, but every now and then it would crit for 50.4k. On average this would be 25.2k * 0.82 + 50.4k * 0.18 = **29.7k**. Therefore Alice's shields go up on average, by about 6%.
+
+Bob on the other hand had focussed more on mastery. His old PW:S would have been 20k * 1.66 = **33.2k**. In the new system, his shields would be 20k * 1.42 = 28.4k, but would occasionally crit for 56.8k. This would average out to 28.4k * 0.92 + 56.8k * 0.08 = **30.7k**. So Bob's shields would be reduced by about 7-8%.
+
+Finally some balance. Perhaps too much balance.
+-----------------------------------------------
+
+So to sum this up, Blizzard's changes bring crit and mastery closer together. Those focusing on crit before will see their average healing go down a tad, but their PW:S would go up a lot. Those focusing on mastery will see their average healing go up a fair bit, but their PW:S would go down a bit. Overall we'll likely be looking for some balance in our stats, not completely focussing on one stat vs the other. But more on that after we work out some formulas.
+
+Those of you who don't want to delve too deeply into the formulas that follow can probably stop here, and take away the key message that at this point crit and mastery will be valuable and trying to balance the two is probably the way to go, but even if you focus on one over the others you won't be losing much. Alice and Bob in the example above differ by about 6000 rating points shifted from crit to mastery. Yet their healing performance on single heals differs by a mere 2-3% in favor of Alice, and their shield performance differs by a mere 3.5% in Bob's favor. It will all come out to be pretty balanced in the end. If a transfer of a whole 6000 rating points does not change things by more than 1-2%, it's probably not worth worrying about much.
+
+Following is a lot of math formulas, but you can skip to `TL;DR`_ for a brief summary of the conclusions.
+
+Math. You have been warned
+--------------------------
+
+Now let's establish the formulas that measure the strength of crit and mastery in the new system.  Throughout this section \\( C \\) will denote our crit percentage, and \\( M \\) will denote our heal mastery percentage. 600 crit rating would increase \\( C \\) by 0.01, while 600 mastery rating would increase \\( M \\) by 0.008. \\( H \\) will denote the base healing amount (I was using 20k in the above examples). \\( A \\) will denote the average heal amount.
+
+Comparison for PW:S
+~~~~~~~~~~~~~~~~~~~
+Let's start with PW:S, whose formula is fairly simple. The average shielding we get from PW:S is
+
+\\[ A = H (1+2M) (1+C) \\]
+
+The reason for the \\( 2M \\) is of course that M represents the heal mastery, but it's the shield mastery that factors into PW:S. Now, an increase \\( \\Delta M \\) in our mastery will result in a relative increase:
+
+\\[ \\frac{\\Delta A}{A} = \\frac{2\\Delta M}{1 + 2 M} \\]
+
+in our healing. If we denote by \\(\\Delta R_M \\) and amount of mastery rating, then the above formula would become:
+
+\\[ \\frac{\\Delta A}{A} = \\frac{1}{1 + 2 M} \\frac{0.016}{600} \\Delta R_M  \\]
+
+On the other hand, for an increase \\( \\Delta C \\) in crit rating, the average healing will increase by:
+
+\\[ \\frac{\\Delta A}{A} = \\frac{\\Delta C}{1 + C} \\]
+
+and the corresponding rating formula would be:
+
+\\[ \\frac{\\Delta A}{A} = \\frac{1}{1 + C} \\frac{0.01}{600} \\Delta R_C  \\]
+
+Equating the two factors in front of the ratings, we can work out when mastery and crit are essentially the same. We would have:
+
+\\[ \\frac{1}{1 + 2 M} \\frac{0.016}{600} = \\frac{1}{1 + C} \\frac{0.01}{600} \\]
+
+or
+
+\\[  0.3 + 0.8C = M \\]
+
+So when your heal mastery is equal to 30% plus 0.8 times your crit percent, crit rating factor and mastery factor are equal. More mastery would mean crit is stronger, less mastery would mean mastery is stronger. So for optimizing for PW:S we want to keep these two quantities in the above equation about the same.
+
+Before we move on to the other heals, let's check in with Alice and Bob who lost us somewhere along the way. Alice has a crit of 0.18 and heal mastery 0.13 so the above equation would read:
+
+\\[ 0.444 > 0.14 \\]
+
+So Alice would benefit from getting more mastery than crit, as far as PW:S goes. Bob on the other hand has a crit of 0.08 and a heal mastery of 0.21, so his equation would read:
+
+\\[ 0.364 > 0.21 \\]
+
+Bob still would benefit more from mastery than crit, but it's getting closer.
+
+Conclusion: Your heal mastery will need to be quite very ahead of crit for mastery to stop being the best stat for PW:S scaling. At 10% crit you'd need over 38% mastery, at 20% crit you'd need over 46% mastery, and so on. And once again, the equilibrium equation between crit and mastery (after all buffs are in) is
+
+\\[  0.3 + 0.8C = M \\]
+
+Comparison for other heals
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As usual, the formula and comparison for standard heals is more complicated. Let's again imagine a heal that heals for an amount \\( H \\). Then, due to the nature of our new mastery, the heal would actually be for \\( H(1+M) \\). A critted heal would do that same amount of healing, and on top of that provide a shield for that amount scaled by the shield mastery, i.e. \\( H(1+M)(1+2M) \\). So the overall healing from the crit is going to equal \\( H(1+M)(2+2M) \\). Taking into account our crit rating, the average healing formula is:
+
+\\[ A = H(1+M)(1-C) + H(1+M)(2+2M)C \\]
+
+simplifying this gives us
+
+\\[ A = H(1+M)(1+C(1+2M)) \\]
+
+An increase of \\(\\Delta M \\) in the mastery percent would provide a healing increase of the order
+
+\\[ \\frac{\\Delta A}{A} = \\frac{(1+M+\\Delta M) 2 C \\Delta M}{(1+M)(1+C(1+2M))} + \\frac{\\Delta M}{1+M} \\]
+
+In order to simplify things, let's assume that we are looking at a relatively small \\( \\Delta M \\) increase, in which case we can simplify this as
+
+\\[ \\frac{\\Delta A}{A} = \\left(\\frac{2 C}{1+C(1+2M)} + \\frac{1}{1+M}\\right) \\Delta M \\]
+
+in terms of rating, this equation becomes
+
+\\[ \\frac{\\Delta A}{A} = \\left(\\frac{2 C}{1+C(1+2M)} + \\frac{1}{1+M}\\right) \\frac{0.008}{600} \\Delta R_M \\]
+
+A fairly complex factor for sure, but there you have it. Now for crit rating things are easier, with the formula being
+
+\\[ \\frac{\\Delta A}{A} = \\frac{(1+2M)\\Delta C}{1+C(1+2M)} = \\frac{1+2M}{1+C(1+2M)} \\frac{0.01}{600} \\Delta R_C \\]
+
+In order to compare crit and mastery, we need to compare the two coefficients in front of those ratings. This gives us the equation
+
+\\[ \\left(\\frac{2 C}{1+C(1+2M)} + \\frac{1}{1+M}\\right) \\frac{0.008}{600} = \\frac{1+2M}{1+C(1+2M)} \\frac{0.01}{600} \\]
+
+If we cross-multiply and simplify a bit, we get
+
+\\[ 2C(1+M) + (1+C(1+2M)) = 1.25(1+M)(1+2M) \\]
+
+or
+
+\\[ C(3+4M) = 1.25(1+M)(1+2M) -1 \\]
+
+or simpler
+
+\\[ C = \\frac{1.25(1+M)(1+2M) -1}{3+4M} = \\frac{0.25 + 3.75M + 2.5 M^2 }{3+4M} \\]
+
+This might not be the simplest of formulas, but it can still be used for comparison. When crit and mastery are such that the above equation holds, then both crit and mastery are of equal weight. More crit would make mastery more valuable, less crit would make crit more valuable.
+
+For a standard range of heal mastery values, this function can be approximated more simply by
+
+\\[  C = 0.11 + 0.9M \\]
+
+In other words, we want the difference between crit and mastery to be:
+
+\\[ C-M = 0.11 - 0.1M \\]
+
+For mastery ranging from 10% to 50%, this difference varies from crit being 10 percentage points ahead to 6 percentage points. On average, you probably want to keep your crit around 7-8 percentage points ahead of mastery.
+
+Before we jump to the `TL;DR`_, let's visit with Alice and Bob once again. Alice has her crit at 0.18 and her mastery at 0.13. According to that mastery amount, she should have been at 0.227 crit, so she could afford to add 4.3% to her crit before mastery becomes better for her. Since she was already focused on crit, it looks like crit stacking seems to be the way to go still.
+
+For completeness' sake, let's look at Bob also. He has a heal mastery percent of 21%, so his crit should be at 29.9%. He's currently at 8% as he was stacking mastery, so he has a ways to go still.
+
+TL;DR
+~~~~~
+
+For our regular heals (pretty much everything that PW:S), you want to be keeping your crit percentage, after all buffs, about 7-8 percentage points ahead of your mastery. The more precise formula to follow would be:
+
+\\[  C = 0.11 + 0.9M \\]
+
+If your crit is more than that related to you mastery, then you want to increase your mastery; if it is less then you want to increase your crit. Given that we already get a large percentage of mastery for free to begin with, this implies that crit would be a better way to go gearwise, until we reach high crit levels.
+
+On the other hand, when considering PW:S mastery is still way ahead of crit, the optimal relation between the two being given by the formula:
+
+\\[  M = 0.3 + 0.8C \\]
+
+Which essentially expects mastery to be around 25-28 percentage points ahead of crit. As our PW:S will be a considerable part of our healing, this would seem to indicate that mastery and crit are very close to each other stat-wise. So to finally conclude this long post, the main 2 things to take away are:
+
+1. Crit and Mastery are fairly close to each other and we'll want to keep them close to each other, with crit a few percentage points ahead if we don't cast many PW:Ss, and mastery a bit ahead if we are into heavy PW:S spam.
+2. The difference between a crit heavy build and a mastery heavy build is so small, in the order of 2-3%, that for all practical purposes you can go with whatever feels best.
+
