@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>So you want to Healycraft? &mdash; Heal Notes</title>
+    
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Heal Notes" href="index.html" />
+    <link rel="next" title="5.2 Discworld" href="5.2Disc.html" />
+    <link rel="prev" title="Welcome to HealNotes’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">Heal Notes</a></div>
+        <div class="rel">
+          <a href="index.html" title="Welcome to HealNotes’s documentation!"
+             accesskey="P">previous</a> |
+          <a href="5.2Disc.html" title="5.2 Discworld"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="so-you-want-to-healycraft">
+<h1>So you want to Healycraft?<a class="headerlink" href="#so-you-want-to-healycraft" title="Permalink to this headline">¶</a></h1>
+<p>This is what I hope to be the first in a series of posts aimed at introducing people to the wonderful world of healycrafting, namely theorycrafting for healer classes. This first post will attempt to define theorycrafting, and to introduce some of the basics of spells and stats. Later posts will discuss the nuances of particular specs.</p>
+<p>So let&#8217;s get started!</p>
+<div class="section" id="what-is-this-theorycrafting-thing-anyway">
+<h2>What is this Theorycrafting thing anyway?<a class="headerlink" href="#what-is-this-theorycrafting-thing-anyway" title="Permalink to this headline">¶</a></h2>
+<p>Theorycrafting is simply the study of the various spells and mechanics in World of Warcraft (and other similar games I suppose), with an emphasis in the details and numbers behind the spells. A common goal of theorycrafting is to determine the importance of each of your secondary stats for your class, as well as the overall performance of the class. But there&#8217;s a lot of fun to be had on the way there!</p>
+<p>As an example, consider a spell like Holy Light. Most people might just care that it is a cheap and small heal, and that they should use it at times with low incoming damage. A theorycrafter would focus on the exact amount that the spell heals, how much Illuminated Healing shield you&#8217;d get from it, how much of it would transfer to the beacon, whether the shield part would transfer to the beacon, exactly how haste would improve its cast time, exactly how stronger 200 more spellpower would make it, etc.</p>
+<p>If you are happy just knowing that Holy Light is your cheap efficient heal, and that getting more spellpower will make it stronger, this article is probably not for you. Everyone else, follow me!</p>
+</div>
+<div class="section" id="you-yourself-and-your-stats">
+<h2>You, yourself, and your stats<a class="headerlink" href="#you-yourself-and-your-stats" title="Permalink to this headline">¶</a></h2>
+<p>In this post we will do a review of the core stats that affect our character&#8217;s abilities. Each of these has a considerable effect in our healing.</p>
+<div class="section" id="spellpower">
+<h3>Spellpower<a class="headerlink" href="#spellpower" title="Permalink to this headline">¶</a></h3>
+<p>Spellpower is a stat that directly increases the size of your heals. Each heal has a base amount, and we add to that a multiple of our Spellpower by a specific coefficient. When you look up a spell in <a class="reference external" href="http://www.wowhead.com">WoWHead</a>, its description usually contains these two numbers, and often a whole lot more.</p>
+<p>We obtain Spellpower from the following sources:</p>
+<ol class="arabic simple">
+<li>Our weapon has a hefty amount of Spellpower on it.</li>
+<li>Each point of Intellect past the first 10 adds one point of Spellpower.</li>
+<li>There is a 10% Spellpower raid buff that is provided by <a class="reference external" href="http://www.wowhead.com/spell=1459">Mages</a>, <a class="reference external" href="http://www.wowhead.com/spell=77747">Shamans</a>, <a class="reference external" href="http://www.wowhead.com/spell=109773">Warlocks</a>, or <a class="reference external" href="http://www.wowhead.com/spell=126309">Hunter Water Strider pets</a>.</li>
+<li>Some classes have their own abilities that boost it further, namely <a class="reference external" href="http://www.wowhead.com/spell=588/inner-fire">Priest&#8217;s Inner Fire</a> and <a class="reference external" href="http://www.wowhead.com/spell=51730/earthliving-weapon">Shaman&#8217;s Earthliving Weapon</a>.</li>
+</ol>
+<p>As a quick example, suppose a Priest has 15000 Intellect, a weapon with 6600 Spellpower on it, has <a class="reference external" href="http://www.wowhead.com/spell=588/inner-fire">Inner Fire</a> active and receives the raid buff, their effective Spellpower would be:</p>
+<div class="math">
+\[\left(15000 - 10 + 6600\right) \times 1.1 \times 1.1 = 26124\]</div>
+</div>
+<div class="section" id="intellect">
+<h3>Intellect<a class="headerlink" href="#intellect" title="Permalink to this headline">¶</a></h3>
+<p>Intellect is our primary stat. Not as glorious as in the old days where it was increasing our mana pool, but it essentially does two things:</p>
+<ol class="arabic simple">
+<li>It provides us with <a class="reference internal" href="#spellpower">Spellpower</a> at a rate of 1 spellpower for every Intellect point past 10.</li>
+<li>It increases our <a class="reference internal" href="#critical-strike-chance">Critical Strike Chance</a> at a rate of 0.0003951% per point of Intellect. This translates to roughly 2531 Intellect for 1% Crit Chance.</li>
+</ol>
+<p>Intellect appears in all our gear, and some enchants, and we can gem for it using a gem containing red (i.e. red, purple or orange). More on that in our Gemming section however. Also, a lot of proc effects from trinkets or profession enchants provide Intellect.</p>
+<p>Our standard sources of Intellect are as follows:</p>
+<ol class="arabic">
+<li><p class="first">Every class has a base Intellect, that can further vary by at most 1 by race (and I will choose to ignore it). They are as follows:</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Priest:</th><td class="field-body">206</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Paladin:</th><td class="field-body">108</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Druid:</th><td class="field-body">169</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Shaman:</th><td class="field-body">138</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Monk:</th><td class="field-body">143</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">We get an amount of Intellect from our gear, that varies with the gear&#8217;s item level.</p>
+</li>
+<li><p class="first">We can receive Int boosts from <a class="reference external" href="http://www.wowhead.com/item=76085">flask</a> or <a class="reference external" href="http://www.wowhead.com/item=74650">food</a>, most usually in the form of the <a class="reference external" href="http://www.wowhead.com/item=74919">banquet</a>.</p>
+</li>
+<li><p class="first">A raidwide &#8220;all stats&#8221; buff provides a 5% boost. This boost does NOT however include the base Intellect amounts described above. This buff is provided by <a class="reference external" href="http://www.wowhead.com/item=74919">Paladins</a>, <a class="reference external" href="http://www.wowhead.com/spell=115921">Monks</a>, <a class="reference external" href="http://www.wowhead.com/spell=1126">Druids</a>, or <a class="reference external" href="http://www.wowhead.com/spell=90363">Hunter Shale Spider pets</a>.</p>
+</li>
+<li><p class="first">All classes receive a further 5% multiplier if they are wearing only gear appropriate to the class: cloth for <a class="reference external" href="http://www.wowhead.com/spell=89745">priests</a>, leather for <a class="reference external" href="http://www.wowhead.com/spell=86093">druids</a> and <a class="reference external" href="http://www.wowhead.com/spell=120224">monks</a>, mail for <a class="reference external" href="http://www.wowhead.com/spell=86100">shamans</a> and plate for <a class="reference external" href="http://www.wowhead.com/spell=86103">pallies</a>.</p>
+</li>
+<li><p class="first">Druids would receive an extra 6% to their Intellect if they talent into <a class="reference external" href="http://www.wowhead.com/spell=108288">Heart of the Wild</a>.</p>
+</li>
+<li><p class="first">Lost of effects give you temporary Intellect boosts, but we don&#8217;t usually take those into account when computing someone&#8217;s Intellect. <em>You do however need to keep the multiplier factors in mind when evaluating those effects</em>.</p>
+</li>
+</ol>
+<p>As a quick example, let&#8217;s consider a Priest in all cloth, who has flasked for Intellect and eaten the 250 food, and has 15100 Intellect in her gear (notice this is not the same as the value appearing in your character sheet!). She also is wearing only cloth gear (as if she had a choice!) and is receiving the raid buff. Then her Intellect amount would be:</p>
+<div class="math">
+\[\Bigl(206 + \left(15100 + 1000 + 250 \right) \times 1.05\BigR) \times 1.05 = 18242\]</div>
+<p>If this priest now gets a new piece of gear with 100 more Intellect on it, her Intellect amount would actually increase by <span class="math">\(100\times 1.05 \times 1.05 = 110.25\)</span>, as it would be affected by both her cloth specialization and the raid-wide buff.</p>
+</div>
+<div class="section" id="haste">
+<h3>Haste<a class="headerlink" href="#haste" title="Permalink to this headline">¶</a></h3>
+<p>Haste is a percent number that determines how fast your spells can be cast. The way it works is as follows:</p>
+<ol class="arabic simple">
+<li>Each spell has a default cast time, some times reduced by a talent. For example, <a class="reference external" href="http://www.wowhead.com/spell=50464">Nourish</a> has a 2.5 second cast time, but if we were using the <a class="reference external" href="http://www.wowhead.com/spell=17076">Glyph of Rejuvenation</a> it would be reduced by 30%, down to 1.75 seconds, when enough rejuvs are ticking. Haste can further reduce this cast time, essentially with the formula:</li>
+</ol>
+<div class="math">
+\[\textrm{Cast Time} = \frac{\textrm{Base Cast Time}}{1 + \textrm{Haste}}\]</div>
+<p>For example, if we had a haste of 15%, then the plain Nourish&#8217;s cast time would become <span class="math">\(2.5/1.15 = 2.17\)</span> seconds. If it was a Nourish under the effect of the glyph, then its cast time would become <span class="math">\(1.75/1.15 = 1.52\)</span>.</p>
+<ol class="arabic simple" start="2">
+<li>Haste also reduces the <em>Global Cooldown (GCD)</em> by the same formula. The GCD is how much time you need to wait after using an instant cast, before you can cast something else. It has a base value of 1.5 seconds, and it is reduces by haste in the same way as spells, but it can never go below 1 second. This establishes a <em>soft cap</em> on haste percent, of 50%. Beyond that haste amount spell cast times still benefit from it, but the GCD does not.</li>
+<li>Finally, and perhaps most importantly, Haste may affect the number of ticks that a <em>heal-over-time (HoT)</em> spell may have. But more on that later when we discuss HoTs.</li>
+</ol>
+<p>Our haste percent is affected by the following factors:</p>
+<ol class="arabic simple">
+<li>First off, we receive <em>Haste Rating</em> from our gear. This is converted into a haste percentage at a rate of 1% for each 425 rating points. This will further be enhanced by the following multiplicative factors. We will discuss how those factors enter the equation at the end.</li>
+<li>A raid buff provides a 5% multiplicative factor to haste. This buff can be brought by <a class="reference external" href="http://www.wowhead.com/spell=51470/">Elemental Shamans</a>, <a class="reference external" href="http://www.wowhead.com/spell=24858">Balance Druids</a>, <a class="reference external" href="http://www.wowhead.com/spell=15473">Shadow Priests</a>, or a <a class="reference external" href="http://mop.wowhead.com/spell=135678">Hunter&#8217;s Sporebat pet</a>.</li>
+<li>Shamans that have specced into <a class="reference external" href="http://www.wowhead.com/spell=16188">Ancestral Swiftness</a> receive an extra 5% multiplier.</li>
+<li>Paladins receive a 10% multiplier from <a class="reference external" href="http://www.wowhead.com/spell=20167">Seal of Insight</a>.</li>
+<li><a class="reference external" href="http://mop.wowhead.com/spell=2825">Bloodlust</a>/Heroism would provide a 40 second 30% haste buff. This can be brought by <a class="reference external" href="http://mop.wowhead.com/spell=32182">Shamans</a>, <a class="reference external" href="http://mop.wowhead.com/spell=80353">Mages</a>, or <a class="reference external" href="http://mop.wowhead.com/spell=90355">Hunters with a Core Hound pet</a>.</li>
+</ol>
+<p>All these effects act <em>multiplicatively</em>. What we mean by that is the following: If you have say 13% haste from rating, and you want to factor in the 5% raid buff factor, you have to compute <span class="math">\(1.13\times 1.05 = 1.1865\)</span>, your new haste percent will therefore be 18.65%. As we would use the haste in computations as the 1.1865 factor anyway, this way of computing things sort of makes sense.</p>
+<p>As an example, let&#8217;s consider a Paladin with 2340 haste rating in her gear, and suppose she is in a raid where she receives the 5% buff. Her haste percent before any effects would have been <span class="math">\(2340/425 = 5.5%\)</span>. With the 5% buff, and the 10% that Paladins get, this becomes</p>
+<div class="math">
+\[1.055\times 1.05 \times 1.1 = 1.218525\]</div>
+<p>or 21.85%. Now, if she further happens to be casting during Heroism, her haste percent would become <span class="math">\(1.218525\times 1.3 = 1.584\)</span>, or 58.4%.</p>
+</div>
+<div class="section" id="critical-strike-chance">
+<h3>Critical Strike Chance<a class="headerlink" href="#critical-strike-chance" title="Permalink to this headline">¶</a></h3>
+<p>Critical Strike Chance is a percent value that determines the chance that your heal will be a <em>critical strike</em>. This means that it will heal for double the amount, with the exception of Discipline Priests where things are lot more complicated. However, critical strikes often have important side-effects:</p>
+<ol class="arabic simple">
+<li>For Discipline Priests they will trigger their <a class="reference external" href="http://www.wowhead.com/spell=47515">Mastery</a>.</li>
+<li>A critical strike with <a class="reference external" href="http://www.wowhead.com/spell=20473">Holy Shock</a> will trigger <cite>Infusion of Light &lt;http://www.wowhead.com/spell=53576&gt;</cite>, which in turn reduces the cast time of other spells.</li>
+<li>A critical strike for a Resto Shaman will proc both <a class="reference external" href="http://www.wowhead.com/spell=16196">Resurgence</a> for some mana back and <a class="reference external" href="http://www.wowhead.com/spell=51558">Ancestral Awakening</a> for 40% of the heal being copied to a nearby player.</li>
+</ol>
+<p>There are many more effects, but those are some of the most striking ones. One further thing to keep in mind is that the popular <a class="reference external" href="http://www.wowhead.com/item=76885">Burning Primal Diamond</a> increases the effect by 3%: In addition to the heal being doubled, it is further multiplied by an extra 1.03 factor.</p>
+<p>Critical Strike Chance is determined as follows:</p>
+<ol class="arabic">
+<li><p class="first">Each class has a base crit chance:</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Priest:</th><td class="field-body">1.235%</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Paladin:</th><td class="field-body">3.335%</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Druid:</th><td class="field-body">1.85%</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Shaman:</th><td class="field-body">1.235%</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Monk:</th><td class="field-body">2.19%</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Our gear provides us with <em>Critical Strike Rating</em>, which is converted to a percentage at rate of 600 rating points for 1% of crit chance.</p>
+</li>
+<li><p class="first">Our <a class="reference internal" href="#intellect">Intellect</a> provides us with crit chance at a rate of roughly 1% for every 2531.</p>
+</li>
+<li><p class="first">A raid buff can provide us an additive extra 5% crit rating. This buff is provided by <a class="reference external" href="http://mop.wowhead.com/spell=17007">Guardian and Feral Druids</a>, <a class="reference external" href="http://mop.wowhead.com/spell=1459">Mages</a>, <a class="reference external" href="http://mop.wowhead.com/spell=116781">Windwalker Monks</a> or <a class="reference external" href="http://mop.wowhead.com/spell=97229">any</a> <a class="reference external" href="http://mop.wowhead.com/spell=24604">number</a> <a class="reference external" href="http://mop.wowhead.com/spell=90309">of</a> <a class="reference external" href="http://mop.wowhead.com/spell=126373">Hunter</a> <a class="reference external" href="http://mop.wowhead.com/spell=126309">pets</a>.</p>
+</li>
+</ol>
+<p>For example, let us suppose a Resto Druid has 18467 Intellect after all effects are accounted for, and she has 1340 crit rating in her gear. And suppose she receives the raid buff as well. Then her critical strike chance would be:</p>
+<div class="math">
+\[1.85 + 1340/600 + 18467/2531 + 5 = 16.38%\]</div>
+<p>It is worth noting that a few spells, notably <a class="reference external" href="http://www.wowhead.com/spell=20473">Holy Shock</a> and <a class="reference external" href="http://www.wowhead.com/spell=8936">Regrowth</a> have considerably higher chance to crit, as does <a class="reference external" href="http://www.wowhead.com/spell=8004">Healing Surge</a> under the effects of <a class="reference external" href="http://www.wowhead.com/spell=51564">Tidal Waves</a>. All these effects are additive.</p>
+</div>
+<div class="section" id="id8">
+<h3>Mastery<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Mastery is a relatively new stat, and it is unusual in the sense that it behaves extremely differently for each class. We accumulate mastery in the form of mastery rating, and this is converted into a percentage effect for each class. In the old days there used to be an intermediate step <em>Mastery Points</em>, which was independent of the spec, and I will use this same system here, even though Blizzard effectively skips this step when showing our mastery in the character sheet. So our discussion of Mastery has two parts: One part is how the Mastery Points are computed, an the second part explains what those points translate to in the various specs.</p>
+<p>Mastery Points come from the following sources:</p>
+<ol class="arabic simple">
+<li>Everyone receives 8 mastery points to start with.</li>
+<li>Our gear provides us with Mastery Rating, which gets converted to Mastery Points at a rate of 600 Rating for 1 Mastery Point.</li>
+<li>A raid buff provides us with another 3000 Mastery Rating, or equivalently 5 Mastery Points.</li>
+</ol>
+<p>These are all added together. For example, someone with 2145 Mastery Rating in their gear, and receiving the raid-wide mastery buff, would have in terms of Mastery Points:</p>
+<div class="math">
+\[8 + 2145/600 + 5 = 16.575\]</div>
+<p>Different classes use Mastery in different ways. We&#8217;ll provide only a brief mention here, as masteries will be examined in greater detail when we analyze each class individually.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Disc:</th><td class="field-body">Increases all heals by 0.8% for each Mastery Point, and all shield effects by 1.6% for each Mastery Point.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Holy:</th><td class="field-body">Places a 6 second hot equal to a percent of the original heal, 1.25% for each Mastery Point.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Paladin:</th><td class="field-body">Places a stacking shield equal to a percent of the heal, 1.5% for each Mastery Point.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Druid:</th><td class="field-body">Increases the effect of heals by a percent, 1.25% for each Mastery Point.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Shaman:</th><td class="field-body">Increases the amount of healing based on the target&#8217;s health deficit and a involving a percent computation based on Mastery, 3% for each Mastery Point.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Monk:</th><td class="field-body">Heals give a chance to spawn a Healing Sphere next to an injured ally.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="spirit">
+<h3>Spirit<a class="headerlink" href="#spirit" title="Permalink to this headline">¶</a></h3>
+<p>Though not directly affecting the strength of our spells, Spirit affects our <a class="reference internal" href="#mana-regeneration">Mana Regeneration</a>, which affects our ability to keep casting spells without running out of mana.</p>
+</div>
+<div class="section" id="mana-regeneration">
+<h3>Mana Regeneration<a class="headerlink" href="#mana-regeneration" title="Permalink to this headline">¶</a></h3>
+<p>In Mist of Pandaria, we have a fixed initial mana pool of 300,000 mana. Almost all our spells cost mana to cast, and we have various sources of mana generation to make up for that loss. The difference between the outgoing mana and the incoming mana can determine how long we can go on casting before we run out of mana. All this will be the subject of a future post.</p>
+</div>
+</div>
+<div class="section" id="what-s-next">
+<h2>What&#8217;s Next<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>Thus ends our first journey into the wonderful world of theorycrafting. You&#8217;ve learned what the various stats do and how to compute them. Next up, we&#8217;ll tackle more specifically how these stats affect spells, and how to measure how well each stat performs.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">So you want to Healycraft?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2Disc.html">5.2 Discworld</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="search.html" method="get">
+            <input type="text" name="q" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="index.html" title="Welcome to HealNotes’s documentation!"
+             >previous</a> |
+          <a href="5.2Disc.html" title="5.2 Discworld"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+            <br/>
+            <a href="_sources/TheoryCraftingBasics.txt"
+               rel="nofollow">Show Source</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2013, Heal Adinne.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

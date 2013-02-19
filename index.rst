@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   TheoryCraftingBasics
    5.2Disc
 
 Indices and tables

@@ -139,59 +139,81 @@
 </div>
 <div class="section" id="math-you-have-been-warned">
 <h2>Math. You have been warned<a class="headerlink" href="#math-you-have-been-warned" title="Permalink to this headline">¶</a></h2>
-<p>Now let&#8217;s establish the formulas that measure the strength of crit and mastery in the new system.  Throughout this section \( C \) will denote our crit percentage, and \( M \) will denote our heal mastery percentage. 600 crit rating would increase \( C \) by 0.01, while 600 mastery rating would increase \( M \) by 0.008. \( H \) will denote the base healing amount (I was using 20k in the above examples). \( A \) will denote the average heal amount.</p>
+<p>Now let&#8217;s establish the formulas that measure the strength of crit and mastery in the new system.  Throughout this section <span class="math">\(C\)</span> will denote our crit percentage, and <span class="math">\(M\)</span> will denote our heal mastery percentage. 600 crit rating would increase <span class="math">\(C\)</span> by 0.01, while 600 mastery rating would increase <span class="math">\(M\)</span> by 0.008. <span class="math">\(H\)</span> will denote the base healing amount (I was using 20k in the above examples). <span class="math">\(A\)</span> will denote the average heal amount.</p>
 <div class="section" id="comparison-for-pw-s">
 <h3>Comparison for PW:S<a class="headerlink" href="#comparison-for-pw-s" title="Permalink to this headline">¶</a></h3>
 <p>Let&#8217;s start with PW:S, whose formula is fairly simple. The average shielding we get from PW:S is</p>
-<p>\[ A = H (1+2M) (1+C) \]</p>
-<p>The reason for the \( 2M \) is of course that M represents the heal mastery, but it&#8217;s the shield mastery that factors into PW:S. Now, an increase \( \Delta M \) in our mastery will result in a relative increase:</p>
-<p>\[ \frac{\Delta A}{A} = \frac{2\Delta M}{1 + 2 M} \]</p>
-<p>in our healing. If we denote by \(\Delta R_M \) and amount of mastery rating, then the above formula would become:</p>
-<p>\[ \frac{\Delta A}{A} = \frac{1}{1 + 2 M} \frac{0.016}{600} \Delta R_M  \]</p>
-<p>On the other hand, for an increase \( \Delta C \) in crit rating, the average healing will increase by:</p>
-<p>\[ \frac{\Delta A}{A} = \frac{\Delta C}{1 + C} \]</p>
+<div class="math">
+\[A = H (1+2M) (1+C)\]</div>
+<p>The reason for the <span class="math">\(2M\)</span> is of course that M represents the heal mastery, but it&#8217;s the shield mastery that factors into PW:S. Now, an increase <span class="math">\(\Delta M\)</span> in our mastery will result in a relative increase:</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \frac{2\Delta M}{1 + 2 M}\]</div>
+<p>in our healing. If we denote by <span class="math">\(\Delta R_M\)</span> and amount of mastery rating, then the above formula would become:</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \frac{1}{1 + 2 M} \frac{0.016}{600} \Delta R_M\]</div>
+<p>On the other hand, for an increase <span class="math">\(\Delta C\)</span> in crit rating, the average healing will increase by:</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \frac{\Delta C}{1 + C}\]</div>
 <p>and the corresponding rating formula would be:</p>
-<p>\[ \frac{\Delta A}{A} = \frac{1}{1 + C} \frac{0.01}{600} \Delta R_C  \]</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \frac{1}{1 + C} \frac{0.01}{600} \Delta R_C\]</div>
 <p>Equating the two factors in front of the ratings, we can work out when mastery and crit are essentially the same. We would have:</p>
-<p>\[ \frac{1}{1 + 2 M} \frac{0.016}{600} = \frac{1}{1 + C} \frac{0.01}{600} \]</p>
+<div class="math">
+\[\frac{1}{1 + 2 M} \frac{0.016}{600} = \frac{1}{1 + C} \frac{0.01}{600}\]</div>
 <p>or</p>
-<p>\[  0.3 + 0.8C = M \]</p>
+<div class="math">
+\[0.3 + 0.8C = M\]</div>
 <p>So when your heal mastery is equal to 30% plus 0.8 times your crit percent, crit rating factor and mastery factor are equal. More mastery would mean crit is stronger, less mastery would mean mastery is stronger. So for optimizing for PW:S we want to keep these two quantities in the above equation about the same.</p>
 <p>Before we move on to the other heals, let&#8217;s check in with Alice and Bob who lost us somewhere along the way. Alice has a crit of 0.18 and heal mastery 0.13 so the above equation would read:</p>
-<p>\[ 0.444 &gt; 0.14 \]</p>
+<div class="math">
+\[\begin{split}0.444 &gt; 0.14\end{split}\]</div>
 <p>So Alice would benefit from getting more mastery than crit, as far as PW:S goes. Bob on the other hand has a crit of 0.08 and a heal mastery of 0.21, so his equation would read:</p>
-<p>\[ 0.364 &gt; 0.21 \]</p>
+<div class="math">
+\[\begin{split}0.364 &gt; 0.21\end{split}\]</div>
 <p>Bob still would benefit more from mastery than crit, but it&#8217;s getting closer.</p>
 <p>Conclusion: Your heal mastery will need to be quite very ahead of crit for mastery to stop being the best stat for PW:S scaling. At 10% crit you&#8217;d need over 38% mastery, at 20% crit you&#8217;d need over 46% mastery, and so on. And once again, the equilibrium equation between crit and mastery (after all buffs are in) is</p>
-<p>\[  0.3 + 0.8C = M \]</p>
+<div class="math">
+\[0.3 + 0.8C = M\]</div>
 </div>
 <div class="section" id="comparison-for-other-heals">
 <h3>Comparison for other heals<a class="headerlink" href="#comparison-for-other-heals" title="Permalink to this headline">¶</a></h3>
-<p>As usual, the formula and comparison for standard heals is more complicated. Let&#8217;s again imagine a heal that heals for an amount \( H \). Then, due to the nature of our new mastery, the heal would actually be for \( H(1+M) \). A critted heal would do that same amount of healing, and on top of that provide a shield for that amount scaled by the shield mastery, i.e. \( H(1+M)(1+2M) \). So the overall healing from the crit is going to equal \( H(1+M)(2+2M) \). Taking into account our crit rating, the average healing formula is:</p>
-<p>\[ A = H(1+M)(1-C) + H(1+M)(2+2M)C \]</p>
+<p>As usual, the formula and comparison for standard heals is more complicated. Let&#8217;s again imagine a heal that heals for an amount <span class="math">\(H\)</span>. Then, due to the nature of our new mastery, the heal would actually be for <span class="math">\(H(1+M)\)</span>. A critted heal would do that same amount of healing, and on top of that provide a shield for that amount scaled by the shield mastery, i.e. <span class="math">\(H(1+M)(1+2M)\)</span>. So the overall healing from the crit is going to equal <span class="math">\(H(1+M)(2+2M)\)</span>. Taking into account our crit rating, the average healing formula is:</p>
+<div class="math">
+\[A = H(1+M)(1-C) + H(1+M)(2+2M)C\]</div>
 <p>simplifying this gives us</p>
-<p>\[ A = H(1+M)(1+C(1+2M)) \]</p>
-<p>An increase of \(\Delta M \) in the mastery percent would provide a healing increase of the order</p>
-<p>\[ \frac{\Delta A}{A} = \frac{(1+M+\Delta M) 2 C \Delta M}{(1+M)(1+C(1+2M))} + \frac{\Delta M}{1+M} \]</p>
-<p>In order to simplify things, let&#8217;s assume that we are looking at a relatively small \( \Delta M \) increase, in which case we can simplify this as</p>
-<p>\[ \frac{\Delta A}{A} = \left(\frac{2 C}{1+C(1+2M)} + \frac{1}{1+M}\right) \Delta M \]</p>
+<div class="math">
+\[A = H(1+M)(1+C(1+2M))\]</div>
+<p>An increase of <span class="math">\(\Delta M\)</span> in the mastery percent would provide a healing increase of the order</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \frac{(1+M+\Delta M) 2 C \Delta M}{(1+M)(1+C(1+2M))} + \frac{\Delta M}{1+M}\]</div>
+<p>In order to simplify things, let&#8217;s assume that we are looking at a relatively small <span class="math">\(\Delta M\)</span> increase, in which case we can simplify this as</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \left(\frac{2 C}{1+C(1+2M)} + \frac{1}{1+M}\right) \Delta M\]</div>
 <p>in terms of rating, this equation becomes</p>
-<p>\[ \frac{\Delta A}{A} = \left(\frac{2 C}{1+C(1+2M)} + \frac{1}{1+M}\right) \frac{0.008}{600} \Delta R_M \]</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \left(\frac{2 C}{1+C(1+2M)} + \frac{1}{1+M}\right) \frac{0.008}{600} \Delta R_M\]</div>
 <p>A fairly complex factor for sure, but there you have it. Now for crit rating things are easier, with the formula being</p>
-<p>\[ \frac{\Delta A}{A} = \frac{(1+2M)\Delta C}{1+C(1+2M)} = \frac{1+2M}{1+C(1+2M)} \frac{0.01}{600} \Delta R_C \]</p>
+<div class="math">
+\[\frac{\Delta A}{A} = \frac{(1+2M)\Delta C}{1+C(1+2M)} = \frac{1+2M}{1+C(1+2M)} \frac{0.01}{600} \Delta R_C\]</div>
 <p>In order to compare crit and mastery, we need to compare the two coefficients in front of those ratings. This gives us the equation</p>
-<p>\[ \left(\frac{2 C}{1+C(1+2M)} + \frac{1}{1+M}\right) \frac{0.008}{600} = \frac{1+2M}{1+C(1+2M)} \frac{0.01}{600} \]</p>
+<div class="math">
+\[\left(\frac{2 C}{1+C(1+2M)} + \frac{1}{1+M}\right) \frac{0.008}{600} = \frac{1+2M}{1+C(1+2M)} \frac{0.01}{600}\]</div>
 <p>If we cross-multiply and simplify a bit, we get</p>
-<p>\[ 2C(1+M) + (1+C(1+2M)) = 1.25(1+M)(1+2M) \]</p>
+<div class="math">
+\[2C(1+M) + (1+C(1+2M)) = 1.25(1+M)(1+2M)\]</div>
 <p>or</p>
-<p>\[ C(3+4M) = 1.25(1+M)(1+2M) -1 \]</p>
+<div class="math">
+\[C(3+4M) = 1.25(1+M)(1+2M) -1\]</div>
 <p>or simpler</p>
-<p>\[ C = \frac{1.25(1+M)(1+2M) -1}{3+4M} = \frac{0.25 + 3.75M + 2.5 M^2 }{3+4M} \]</p>
+<div class="math">
+\[C = \frac{1.25(1+M)(1+2M) -1}{3+4M} = \frac{0.25 + 3.75M + 2.5 M^2 }{3+4M}\]</div>
 <p>This might not be the simplest of formulas, but it can still be used for comparison. When crit and mastery are such that the above equation holds, then both crit and mastery are of equal weight. More crit would make mastery more valuable, less crit would make crit more valuable.</p>
 <p>For a standard range of heal mastery values, this function can be approximated more simply by</p>
-<p>\[  C = 0.11 + 0.9M \]</p>
+<div class="math">
+\[C = 0.11 + 0.9M\]</div>
 <p>In other words, we want the difference between crit and mastery to be:</p>
-<p>\[ C-M = 0.11 - 0.1M \]</p>
+<div class="math">
+\[C-M = 0.11 - 0.1M\]</div>
 <p>For mastery ranging from 10% to 50%, this difference varies from crit being 10 percentage points ahead to 6 percentage points. On average, you probably want to keep your crit around 7-8 percentage points ahead of mastery.</p>
 <p>Before we jump to the <a class="reference internal" href="#tl-dr">TL;DR</a>, let&#8217;s visit with Alice and Bob once again. Alice has her crit at 0.18 and her mastery at 0.13. According to that mastery amount, she should have been at 0.227 crit, so she could afford to add 4.3% to her crit before mastery becomes better for her. Since she was already focused on crit, it looks like crit stacking seems to be the way to go still.</p>
 <p>For completeness&#8217; sake, let&#8217;s look at Bob also. He has a heal mastery percent of 21%, so his crit should be at 29.9%. He&#8217;s currently at 8% as he was stacking mastery, so he has a ways to go still.</p>
@@ -199,10 +221,12 @@
 <div class="section" id="tl-dr">
 <h3>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h3>
 <p>For our regular heals (pretty much everything that PW:S), you want to be keeping your crit percentage, after all buffs, about 7-8 percentage points ahead of your mastery. The more precise formula to follow would be:</p>
-<p>\[  C = 0.11 + 0.9M \]</p>
+<div class="math">
+\[C = 0.11 + 0.9M\]</div>
 <p>If your crit is more than that related to you mastery, then you want to increase your mastery; if it is less then you want to increase your crit. Given that we already get a large percentage of mastery for free to begin with, this implies that crit would be a better way to go gearwise, until we reach high crit levels.</p>
 <p>On the other hand, when considering PW:S mastery is still way ahead of crit, the optimal relation between the two being given by the formula:</p>
-<p>\[  M = 0.3 + 0.8C \]</p>
+<div class="math">
+\[M = 0.3 + 0.8C\]</div>
 <p>Which essentially expects mastery to be around 25-28 percentage points ahead of crit. As our PW:S will be a considerable part of our healing, this would seem to indicate that mastery and crit are very close to each other stat-wise. So to finally conclude this long post, the main 2 things to take away are:</p>
 <ol class="arabic simple">
 <li>Crit and Mastery are fairly close to each other and we&#8217;ll want to keep them close to each other, with crit a few percentage points ahead if we don&#8217;t cast many PW:Ss, and mastery a bit ahead if we are into heavy PW:S spam.</li>

@@ -1,0 +1,49 @@
+I'll address the range issues you bring at the end, but first our discussion prompted me to create "aoe rotations" in my calculator for each spec. If you copy each of the following strings and use them with the Import Rotation feature, you'll get a nice table comparing all 4 specs (maybe I should add holy to the mix). I went with a 2 minute rotation, but you can adjust it if you like, I doubt the results will be all that different. I have excluded the big CDs like PW:B, Healing Tide, Tranquility. I also excluded Archangel. HealCalc does not include Infusion of Light, but it does include Daybreak, and Tidal Waves, and many other similar abilities, to the extent that I could incorporate them. You can try to adjust the rotations a bit to try to push out a bit more from them, but they are really limited from the cds of their big abilities, you can only adjust some smaller ones, and that doesn't change the numbers all that much.
+
+I went with balanced crit/mastery/haste to make it as fair as possible to all specs
+
+Disc: I included Evangelism buff for the penances and holy fires, did not include Archangel. Cast PoM, Penance on CD, PW:S on Rapture CD. A few holy fires thrown in 
+Rotation: DiscAoE2min&Disc&time:120&20:10&6:8&22:11&10:15&8:9&0:13
+
+Pally: I included t14 2set. Did not include the pvp set bonus since it's going away in 5.2. Included Daybreak. Used up all HP on Eternal Flames. Used Holy Prism on CD. Did not include any buffs.
+Rotation: PallyAoE2min&Pally&time:120&6:48&15:51&31:43&20:44
+
+Druid: Included Glyph of Wild Growth, and the 10% buff they get in 5.2. Included some lifeblooms and regrowth freecasting procs (estimated 6 procs). Filled the rest with Wild Growth, Swiftmend, Rejuvs. Added some mushrooms as it was too expensive of a rotation otherwise.
+Rotation: DruidAoE2min&Druid&time:120&8:37&12:36&30:34&8:35&6:33&9:38
+
+Shaman: Included tidal waves on any GHWs, assumed all CH buffed by Riptide. Used Riptide, Healing Rain, Healing Stream totem on CD. Assumed a recast of Earth Shield every 30 seconds. Filled in with a mixture of GHW, HW, Chain Heal. Gave Shamans less idle time to account for the fact that my program assigns cast time to earthliving. Assumed 12 earthliving procs. I also accounted for 30% health deficit on the targets of the heals (for their mastery).
+Rotation: ShamanAoE2min&Shaman&time:120&12:61&4:59&20:57&4:63&12:62&10:56&10:54&4:53
+
+Sorry Monks, my program isn't sophisticated enough yet to handle you properly. We'll assume you can kick each other spec's butt.
+
+Here's a summary of the results:
+
+Spec        HPS      HPM      MPS    Time till OOM
+Disc   130480.4       17   7587.34      191
+Pally  178738.8       24   7551.07      159.1
+Druid  133126.9       22   6155.17      117.8
+Shaman 121746.5       17   7137.44      113
+
+So admittedly Pallies are way ahead of the rest, but druids and shamans aren't really all that different from Disc, and their time till they run out of mana is considerably shorter than disc's. For the Pallies I have included full benefit from Beacon. Taking beacon out takes them down to 144k.
+Shamans come up to 135k if you assume all their targets are at 50% health instead of the 70% I had assumed.
+
+It would be interesting to do a comparison where less of the filler aoes are used, with a focus more on the CD aoes and maybe cheap single target fillers. But maybe that's a good one for a blog post. Actually all this could turn into an interesting blog post, I better get to writing.
+
+Range:
+
+As far as range goes there are severe differences between the spells. PoH will be targeted at a person up to 40 yards away (As most heal spells do anyway), and will heal people in the group within 30 yards of that person. By comparison:
+1. Holy Radiance will heal only people within 10 yards of its target.
+2. Holy Shock with Daybreak has a similar 10 yard restriction.
+3. Swiftmend's aoe effect heals people 8 yards from its target.
+4. I'm not sure how large Healing Rain's radius is, but I would estimate it to be around 10-12 yards.
+5. Wild Growth is 30 yards from the target, so same as PoH
+6. Healing Stream is 40 yards from wherever it's dropped (that's its limitation I suppose).
+
+
+Yes they are smart heals, but they pay for it with a severe range limitation. Depending on your raid's ability to not be too spread out (my raid sucks at staying close), this could be a big issue. And frankly as far as smart healing goes, nothing beats an Atonement Penance at 5 evangelism stacks. Well maybe not nothing, but it's pretty darn good, even before we account for the dps it provides. I'm not crazy about the group nature of PoH, but I prefer that tradeoff to the severe limitations that for instance Holy Radiance presents. I think if it was a smart heal it would be too strong.
+
+So the way I see it we are comparable to Druids and Shamans, and pallies are ahead but they suffer a lot from distance issues (not to mention holy radiance is hardly a fast cast either). But I do consider our fuller aoe arsenal in this, including PoM and Cascade on CD, as well as penance, though frankly it made little difference replacing all the penances with PoHs. 
+
+I'm not saying it's perfect, and I wouldn't mind a buff on it, but I don't think we are at the bottom of the pile and crap at aoeing either. The only thing I might prefer more than aoeing on my disc is aoeing on holy, I like the feel of it. We won't be as strong as we are right now, but the current state is pretty ridiculous in my view.
+
+Phew, this was a long reply. And I better end it before I find more to say.
