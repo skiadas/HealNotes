@@ -1,7 +1,7 @@
 The Color Of Heals
 ==================
 
-Excuse the title, but I've been reading about CSS3 color schemes lately. In our :doc:`first Installment <TheoryCraftingBasics>` we briefly described what theorycrafting and healycrafting are, and then went into a detailed description of the various stats that affect their heals, and how to compute them.
+Excuse the title, but I've been reading about CSS3 color schemes lately. In our :doc:`first installment <TheoryCraftingBasics>` we briefly described what theorycrafting and healycrafting are, and then went into a detailed description of the various stats that affect their heals, and how to compute them.
 
 In this, more *colorful* (yes, I went there), installment, we'll tackle the age-old question: How do your heals grow? How is the amount of a heal computed exactly, and how do the various stats enter the picture? How do we measure the effectiveness of each stat?
 
