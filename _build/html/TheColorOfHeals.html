@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Color Of Heals &mdash; Heal Notes</title>
+    
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Heal Notes" href="index.html" />
+    <link rel="next" title="The HoT Factor" href="TheHoTFactor.html" />
+    <link rel="prev" title="So you want to Healycraft?" href="TheoryCraftingBasics.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">Heal Notes</a></div>
+        <div class="rel">
+          <a href="TheoryCraftingBasics.html" title="So you want to Healycraft?"
+             accesskey="P">previous</a> |
+          <a href="TheHoTFactor.html" title="The HoT Factor"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-color-of-heals">
+<h1>The Color Of Heals<a class="headerlink" href="#the-color-of-heals" title="Permalink to this headline">¶</a></h1>
+<p>Excuse the title, but I&#8217;ve been reading about CSS3 color schemes lately. In our <a class="reference internal" href="TheoryCraftingBasics.html"><em>first Installment</em></a> we briefly described what theorycrafting and healycrafting are, and then went into a detailed description of the various stats that affect their heals, and how to compute them.</p>
+<p>In this, more <em>colorful</em> (yes, I went there), installment, we&#8217;ll tackle the age-old question: How do your heals grow? How is the amount of a heal computed exactly, and how do the various stats enter the picture? How do we measure the effectiveness of each stat?</p>
+<div class="section" id="heals-on-wheels">
+<h2>Heals on Wheels<a class="headerlink" href="#heals-on-wheels" title="Permalink to this headline">¶</a></h2>
+<p>Okay I might be getting a bit out of hand with my section titles, but let&#8217;s push on. First off, how is the heal amount determined, and what things do we measure on spells?</p>
+<p>Every spell has 3.5 key parts to it, by which I mean 3 main parts and 1 secondary part (yes yes, I know you are probably all aware of these parts, but it&#8217;s still worth mentioning them isn&#8217;t it?):</p>
+<ol class="arabic simple">
+<li>First off, the <em>Heal amount</em>, exactly how many hit points it would recover. Affected mostly by spellpower, but also by mastery. We often consider however the <em>Average Heal amount</em>, which tends to include the effects of crit.</li>
+<li><em>Cast time</em>, how long it takes to cast the spell. Affected by haste, and occasionally special spell effects.</li>
+<li><em>Mana cost</em>, how much of a drain on our resources casting the spell is. Just like a dead DPS does no damage, a <em>manaless healer does not healing</em>. Mana costs tends to remain unaffected by stats, but on occasion some other spell effects might affect it. <a class="reference external" href="http://www.wowhead.com/spell=73413">Inner Will</a> for instance makes instant cast spells cheaper for priests.</li>
+</ol>
+<p>One thing to note is that in <cite>WoWHead &lt;http://www.wowhead.com&gt;</cite> tooltips, the spell costs are expressed as a percent of your &#8220;base mana&#8221;. This total mana amount would be usually 300k, except for classes that have non-intellect-based specs. In that case, those percentages refer to a 60k mana pool, as that is the mana pool for non-intellect-based specs. For example druids have feral forms, so looking at regrowth with a cost of 29.7% of base mana translates to <span class="math">\(0.297\times 60000 = 17820\)</span>. These classes seem to be inconsistent in how they deal with spells that are specialization only, so just be aware of this possibility when examining spell costs.</p>
+<p>3.5. <em>Spell side-effects</em>, a catchall phrase for all the other things the spell does that we might care for. For instance mastery often causes the spell to produce a shield, or an extra hot etc. Other times the spell triggers another healing effect, for instance Shaman single target critical heals trigger <a class="reference external" href="http://www.wowhead.com/spell=51558">Ancestral Awakening</a>.</p>
+<p>When evaluating a spell&#8217;s effectiveness, there are a number of different metrics we can use:</p>
+<ol class="arabic simple">
+<li><em>Average Healing amount</em>: How much does the spell heal <em>on average</em>, ideally including its possible side-effects.</li>
+<li><em>HPS (Healing per Second)</em>: This is the average healing amount divided by the spell&#8217;s cast time. It is what we often use to measure a spell&#8217;s throughput, or when we want to just evaluate how haste affects things.</li>
+<li><em>HPM (Healing per Mana)</em>: This is the average healing amount divided by the spell&#8217;s mana cost. It is of paramount importance when we consider a spell&#8217;s efficiency. It tells you how much healing the spell provides per point of mana. Since we have limited mana resources in most cases, this places limits on how much we can effectively heal.</li>
+<li><em>MPS (Mana per Second)</em>: The spell&#8217;s mana cost divided by its cast time. While not directly related to a spell&#8217;s healing output, it is a factor when we consider how quickly we&#8217;ll deplete our mana pool. This is often compared to the <em>incoming mana per second</em> that we get from the various mana sources at our disposal.</li>
+</ol>
+</div>
+<div class="section" id="it-s-formula-time">
+<h2>It&#8217;s Formula Time!<a class="headerlink" href="#it-s-formula-time" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s take a look at the basic formulas around our healing. First of all, we&#8217;ve got the basic heal number that we see when we hover over a spell. If you view a spell in WoWHead, you may see something like this (this is the values for Nourish):</p>
+<blockquote>
+<div>Heals a friendly target for 6151 to 7148 (+ 61.4% of SpellPower).</div></blockquote>
+<p>This has two components: The first is a <em>base amount</em>, typically denoted by B. In our case it is actually a range, from 6151 to 7148. What this means is that when we cast the spell, a number in this range is randomly selected to be used, all those numbers having an equal chance to occur. This is the only reason you see slight variations in the amounts your spells heal. In order to simplify matters, we tend to go with the average of those values as our B. In Nourish&#8217;s case, that would be 6649.5.</p>
+<p>Then we&#8217;ve got the spellpower coefficient, usually denoted by c. It is 61.4% in this case. What this means (duh!) is that the base heal amount is further increased by that percentage of our spellpower. For example if a druid has 21435 spellpower, then the actual average base heal amount of a Nourish would be <span class="math">\(6649.5 + 0.614\times 21435 = 19810.6\)</span>. In practice, the heal would actually vary from <span class="math">\(6151 + 0.614\times 21435 = 19312.1\)</span> to <span class="math">\(7148 + 0.614\times 21435 = 20309.1\)</span>.</p>
+<p>This is the basic mechanic for most spells. There are exceptions, and HoTs behave somewhat differently, but those would be topics for later. For now, let&#8217;s just summarize the formula for the base healing amount:</p>
+<div class="math">
+\[H = B + c \times S\]</div>
+<p>where S represents our spellpower, and H represents the healing amount.</p>
+<p>This number is the number you typically see in-game when you hover over a spell. That&#8217;s not always the case however. For instance if you are on a Disc Priest and you&#8217;ve just used <a class="reference external" href="http://www.wowhead.com/spell=81700">Archangel</a>, then you&#8217;re likely to see those numbers increased by 25%, i.e. by a factor of 1.25. There&#8217;s often similar &#8220;constant factor&#8221; effects, that we collectively represent as a constant factor at the beginning of the formula, like so:</p>
+<div class="math">
+\[H = k( B + c \times S )\]</div>
+<p>Now, for some specs, their mastery provides them with an extra heal to an amount equal to a percentage of the base heal. For example let&#8217;s say that a Druid as 16.8% mastery. This would mean that their direct heals like Nourish would in fact be 16.8% stronger, so we would have to multiply the above formula by 1.168. Or the effect might be more like the pally&#8217;s mastery, which adds that extra percent as a shield instead of increasing the base heal. But the net effect is the same, the overall healing amount needs to be multiplied by 1+M, where M is the mastery percent. We therefore arrive at:</p>
+<div class="math">
+\[H = k( B + c \times S ) ( 1 + M )\]</div>
+<p>Of course different masteries work differently, but this will give us some basic understanding of how to compare things.</p>
+<p>This is essentially the general formula for the base healing effect. The next step is to consider the effect of critical strike chance. Excluding side-effects for the moment, a critical heal provides double the amount of healing. If C represents our healing percentage, then this is what would happen C of the times, while the remaining 1-C of the times our heals would be regular. To get a combined effect therefore we could do:</p>
+<div class="math">
+\[\textrm{AvgH} = (1-C) H + C 2 H = (1 + C) H\]</div>
+<p>So critical strike has a similar 1 + C factor effect, and gives us a formula for the average heal:</p>
+<div class="math">
+\[\textrm{AvgH} = k( B + c \times S ) ( 1 + M ) ( 1 + C )\]</div>
+<p>This is in essence the key formula used to compare different stats, and we&#8217;ll discuss the basics of this comparison in the next section. but before we do so, let&#8217;s consider how this would change if we want to switch to HPS: Remember that HPS is the average healing amount, but divided by our cast time. Our cast time in turn is a base cast time, divided by 1 + H where H is our healing percent. When we put this all together, that 1 + H factor in the denominator ends up in the numerator of the whole thing, and the final formula looks like this:</p>
+<div class="math">
+\[\textrm{HPS} = \frac{k}{\textrm{Base CT}}( B + c \times S ) ( 1 + M ) ( 1 + C ) ( 1 + H )\]</div>
+</div>
+<div class="section" id="stat-weights-or-something-like-it">
+<h2>Stat Weights, or something like it<a class="headerlink" href="#stat-weights-or-something-like-it" title="Permalink to this headline">¶</a></h2>
+<p>If you got lost in the previous section, the last two formulas are the key ones to remember. They express our average healing amount and our HPS in terms of our spellpower, mastery, crit chance, haste, and the spell&#8217;s characteristics, the base amount B and spell coefficient c.</p>
+<p>Now, on to the real question we should be asking ourselves: How do we determine which stat is best? Should we get 100 more crit or 100 more mastery? or 100 more haste? We need a convenient way to see how much each of these stat increases benefits us.</p>
+<p>At first glance, this shouldn&#8217;t be that hard: If you want to see how much for instance 1% extra mastery would increase your spell, just add and amount <span class="math">\(\Delta M = 0.01\)</span> to the mastery M in the above formula, and you&#8217;d get:</p>
+<div class="math">
+\[\textrm{New AvgH} = k( B + c \times S ) ( 1 + M + \Delta M ) ( 1 + C )\]</div>
+<p>If we look at the difference between the new and old, we get:</p>
+<div class="math">
+\[\textrm{New AvgH} - \textrm{Old AvgH} = k( B + c \times S ) (\Delta M) ( 1 + C )\]</div>
+<p>So as you can see to get the actual amount of increase, we essentially multiply the increase in mastery with all the other factors in the equation, that basically remain unchanged. This is all fine and swell, and we could for instance do the same thing for crit and compare the two effects. But as it stands, this has a number of limitations, the most important of those being that it depends on the heal we consider. Different heals would give us different, um, differences.</p>
+<p>This is where the wonderful world of <em>relative increases</em> enters. Instead of just looking at the difference in Average Healing (or HPS), look at that difference relative to the old amount:</p>
+<div class="math">
+\[\textrm{Relative AvgH increase (RI)} = \frac{\textrm{New AvgH} - \textrm{Old AvgH}}{\textrm{Old AvgH}}\]</div>
+<p>When we do this, all the extra factors will cancel out, and we are left with:</p>
+<div class="math">
+\[\textrm{RI} = \frac{\Delta M}{1+M} = \frac{1}{1+M}\Delta M\]</div>
+<p>This is absolutely brilliant! If we want to consider the relative increase that a stat provides, all that matters (with few exceptions) is how much of that stat we have!</p>
+<p>Say that out loud with me again: If we want to consider the relative increase that a stat provides, all that matters (with few exceptions) is how much of that stat we have!</p>
+<p>Say it a third time: Ok maybe not, but it&#8217;s just that brilliant!</p>
+<p>For example let&#8217;s suppose our healer in the above example has 20% mastery. Then if she were to get another 1%, her spells would all increase by</p>
+<div class="math">
+\[\frac{0.01}{1.2} = 0.0083 = 0.83%\]</div>
+<p>No matter what spell we look at (almost), no matter what the other stats are, 1% mastery will give us the same increase of 0.83%. One other consequence of this formula however is this:</p>
+<blockquote>
+<div>The more of a stat we have, the less our relative benefit from more of it.</div></blockquote>
+<p>Before we move on with comparison, let&#8217;s not forget ratings. Mastery does not come in percents in our gear, it comes in ratings. Recall that 600 rating provides us with 1 mastery point, which then translates to a percent depending on the spec. If we look at a druid for instance, each mastery point is 1.25% mastery percent, so 600 rating translates to 1.25%. If we want to account for that in the above formula, we can factor it in:</p>
+<div class="math">
+\[\textrm{RI} = \frac{1}{1+M}\times \frac{0.0125}{600} \Delta \textrm{MRating}\]</div>
+<p>Therefore a druid with 20% mastery would be getting 0.001736% per point of rating, or 0.1736% relative increase for 100 points of rating.</p>
+<div class="section" id="finally-some-stat-weights">
+<h3>Finally, some stat weights<a class="headerlink" href="#finally-some-stat-weights" title="Permalink to this headline">¶</a></h3>
+<p>The reason this is useful is because we can establish a relation between the different stats using it. For instance, suppose that 100 mastery rating increases our healing by 0.2%, but 100 crit rating, worked out the same way, increases our healing by only 0.15%. Then we could assign weights to those two spells, indicating their relative significance, namely 1 mastery rating would equal 1.33 crit rating.</p>
+<p>Typically we standardize things by assigning a weight of 1 to 1 point of spellpower, and computing everything else relative to that.</p>
+<p>One thing to not forget is how the various buffs might affect things. For instance, 1 point of Intellect gives a lot more than 1 point of spellpower, so it&#8217;s important to take that into account. On the other hand, the multiplicative haste effects end up not mattering, because they can all be thought of as extra constant factors in the main equation (the reason being the multiplicative nature of the haste calculations).</p>
+<p>Fine I lied, I won&#8217;t actually show you any stat weights yet. The above paragraphs do however describe how you would obtain stat weights in many cases. The only thing missing is a more detailed description of the effect of spellpower:</p>
+</div>
+</div>
+<div class="section" id="putting-the-c-in-bc">
+<h2>Putting the c in BC<a class="headerlink" href="#putting-the-c-in-bc" title="Permalink to this headline">¶</a></h2>
+<p>Most of the factors above have a simple form: (1 + M). Spellpower is different, it enters the question in the form:</p>
+<div class="math">
+\[B + c\times S\]</div>
+<p>It would seem at first that spellpower would be affecting different spells in different ways, and to some extent that&#8217;s true, but to a smaller extend than you would think. Let&#8217;s rewrite that last equation for a second:</p>
+<div class="math">
+\[c\left(\frac{B}{c} + S\right)\]</div>
+<p>Writing it this way makes it look a bit more like the others. That factor of c can be thought of as part of the constant k we put in front, representing all constant factors the spell might have going for it. The important part however, the one that determines how spellpower affects things, is the quotient <span class="math">\(\frac{B}{c}\)</span>. In fact, if we wanted to compute the relative increase from an added amount <span class="math">\(\Delta S\)</span> of spellpower, we would end up with:</p>
+<div class="math">
+\[\textrm{RI} = \frac{1}{\frac{B}{c} + S}\times \Delta S\]</div>
+<p>So the multiplying factor that determines the effect of spellpower depends on <span class="math">\(\frac{B}{c}\)</span> alone, and not on the individual values of B and c. Moreover, when we start computing these quotients for various spells, we find something very interesting:</p>
+<blockquote>
+<div>Each class has a B/c value unique to it, that most spells follow closely.</div></blockquote>
+<p>Therefore spellpower has a different value for each class, but that value tends to be consistent across all spells of that class (with few notable exceptions). We&#8217;ll discuss this factor more closely when we consider each spec on its own.</p>
+<p>Don&#8217;t forget the multiplicative factors that affect spellpower, they would need to be taken into account.</p>
+</div>
+<div class="section" id="quick-wrap-up">
+<h2>Quick Wrap-up<a class="headerlink" href="#quick-wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s the key things to take from all this discussion:</p>
+<ol class="arabic simple">
+<li>The average healing or hps provided by a spell is typically a product of factors, each representing a stat.</li>
+<li>When considering <em>relative increases</em> to hps from a stat increase, this often ends up related to only one of those factors. Stat benefits therefore can be isolated from the other stats when considering relative increases.</li>
+<li>Comparing relative increases to each other provides us with a way to compare stats: Something that boosts your relative healing by 1% is twice as good as something that boosts it by only 0.5%.</li>
+<li>Don&#8217;t forget to account for multiplicative factors on all stats except haste, where they end up canceling out.</li>
+<li>Look at Average Healing or HPS when looking for throughput, HPM when looking for efficiency.</li>
+</ol>
+<p>In our <a class="reference internal" href="TheHoTFactor.html"><em>next installment</em></a>, we&#8217;ll talk about HoTs and how haste affects them.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="TheoryCraftingBasics.html">So you want to Healycraft?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">The Color Of Heals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheHoTFactor.html">The HoT Factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2Disc.html">5.2 Discworld</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="search.html" method="get">
+            <input type="text" name="q" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="TheoryCraftingBasics.html" title="So you want to Healycraft?"
+             >previous</a> |
+          <a href="TheHoTFactor.html" title="The HoT Factor"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+            <br/>
+            <a href="_sources/TheColorOfHeals.txt"
+               rel="nofollow">Show Source</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2013, Heal Adinne.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

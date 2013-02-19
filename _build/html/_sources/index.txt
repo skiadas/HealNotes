@@ -12,6 +12,8 @@ Contents:
    :maxdepth: 1
 
    TheoryCraftingBasics
+   TheColorOfHeals
+   TheHoTFactor
    5.2Disc
 
 Indices and tables

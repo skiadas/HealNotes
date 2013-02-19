@@ -65,6 +65,7 @@ As a quick example, let's consider a Priest in all cloth, who has flasked for In
 
 If this priest now gets a new piece of gear with 100 more Intellect on it, her Intellect amount would actually increase by :math:`100\times 1.05 \times 1.05 = 110.25`, as it would be affected by both her cloth specialization and the raid-wide buff.
 
+
 Haste
 ~~~~~
 Haste is a percent number that determines how fast your spells can be cast. The way it works is as follows:
@@ -157,4 +158,4 @@ In Mist of Pandaria, we have a fixed initial mana pool of 300,000 mana. Almost a
 
 What's Next
 -----------
-Thus ends our first journey into the wonderful world of theorycrafting. You've learned what the various stats do and how to compute them. Next up, we'll tackle more specifically how these stats affect spells, and how to measure how well each stat performs.
+Thus ends our first journey into the wonderful world of theorycrafting. You've learned what the various stats do and how to compute them. :doc:`Next up <TheColorOfHeals>`, we'll tackle more specifically how these stats affect spells, and how to measure how well each stat performs.
