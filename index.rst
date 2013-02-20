@@ -15,6 +15,7 @@ Contents:
    TheColorOfHeals
    TheHoTFactor
    5.2Disc
+   5.2CritMeta
 
 Indices and tables
 ==================

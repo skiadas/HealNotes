@@ -1,0 +1,92 @@
+Crit Effect Meta in 5.2
+=======================
+
+Now that the new changes for Disc are in the PTR, I took the opportunity to look at how the `crit effect meta <http://www.wowhead.com/item=76885>`_ works with the new Divine Aegis. For those of you interested in just the results, head over to our `TL;DR`_. But the gist of it is that in 5.2, atonement heals triple-dip into the 3% crit effect of the meta.
+
+The ways of old
+---------------
+
+Let's start with how the Crit Meta effect worked before 5.2. First off, a crit heal heals for twice the normal amount, so far so good. The crit meta gem was enhancing this effect by an extra 3%. So if a normal heal would have been 10k, a crit heal would end up being:
+
+.. math:: 10k \times 2 \times 1.03 = 20.6k
+
+so overall a 2.06 factor from the base heal. Now, on top of that we were getting our old Divine Aegis proc, which provided us with a shield equal to 50% of the crit heal, modified further by our mastery. I will assume for this example that I have 33.61% mastery, to match the mastery rating that the priest I was using in the PTR has. This increases the shield amount by a factor of 1.3361, resulting in 66.8% of the heal turned into a shield. This would be an amount equal to 13.76k, for a total crit effect of 34.36k, or 3.436 factor from a regular heal.
+
+Let's try to get an equation for it: If H is the base heal amount, and M is our mastery percent, then the crit heal is equal to :math:`H\times 2.06`, and the shield adds to that :math:`H\times 2.06\times 0.5\times(1+M)`, so we end up with:
+
+.. math:: H\bigl(2.06 + 2.06\times 0.5\times (1+M)\bigr) = H\bigl(3.09 + 1.03\times M\bigr)
+
+If we further want to average this out, taking into account our crit chance, we end up with a formula for the average heal:
+
+.. math:: (1-C)H + C\times H\bigl(3.09 + 1.03\times M\bigr) = H\bigl(1 + 2.09C + 1.03 C M \bigr)
+
+Atonement
+~~~~~~~~~
+
+Atonement had a funny way to interact with the crit effect meta, due to its nature. Recall that any Smite for example will translate to a heal of the same amount of on a nearby target. If the Smite crits, that means the heal crits, and places a corresponding divine aegis proc. But because of the two-step process, there was some double-dipping going on.
+
+To illustrate, suppose that Smite would normally do 10k damage, and would hence translate to a 10k heal via atonement. Now, if that Smite crits, then instead of doing 20k damage, it would actually do :math:`20k\times 1.03 = 20.6k` because of the crit effect meta. when that goes to be translated into a heal, it receives a further 1.03 multiplier, again because of the crit effect meta: :math:`20.6k\times 1.03 = 21218`. Finally, it's this last value that is further used to compute the divine aegis amount, for another 14173 shield, giving us a total heal amount of 35391. Compare this to the 34360 that we got on the regular heals, it's 3% more.
+
+The final formula for the average amount of heal would end up being:
+
+.. math:: H\bigl(1 + 2.1827C + 1.0609 C M \bigr)
+
+Compare it with the earlier formula for our normal heals:
+
+.. math:: H\bigl(1 + 2.09C + 1.03 C M \bigr)
+
+The difference is in fact rather small, in the order of 0.8-1.6% depending on your critical strike chance. But it's there, and it's worth noting.
+
+Make way for the new ways
+-------------------------
+
+I need to get better at my section titles. Anyway, let's see how all this plays out in patch 5.2, with the changes to Divine Aegis that have been announced. First the big change:
+
+    When a Disc Priest heal crits, it does not heal for double the amount. Instead, it heals for the normal amount, but creates a Divine Aegis shield equal to the heal, scaled as appropriately by our mastery.
+
+And don't forget that our mastery is now broken up in two parts, one that increases our heals and another that increases our shields. The 33.61% mastery that my priest has before 5.2 will become a 10.755% increase in our healing, and a 21.5% increase in our shields.
+
+Now let's see what happens when we have the crit meta on. I ran extensive checks earlier, and the results were the following:
+
+1. If your spell would have healed for 10k normally, and it crits, the heal portion receives the 3% crit effect from the meta, so your spell would heal for 10.3k.
+2. The DA shield is equal to exactly this extra heal amount, further buffed by the shield mastery: :math:`10.3k\times 1.215 = 12.51k`. So the overall crit effect would be the sum of those two.
+
+Overall, let us denote by M our heal mastery (so 2M is our shield mastery), and suppose a heal would originally have healed for H before any additions. Then that heal would heal for H(1+M) because of our mastery. If that heal crits, then it would heal for :math:`1.03\times H\times(1+M)`, and place a shield for :math:`1.03\times H\times(1+M)(1+M)`, for a combined effect of:
+
+.. math:: H\times 1.03\times(1+M)(2+M)
+
+If we want to include the crit chance, and get a formula for the average healing, it would be:
+
+.. math:: (1-C)H + C H \times 1.03\times(1+M)(2+M)
+
+aaand I'll just leave it like that because I'm not sure I can simplify it much further. But this is more or less what we would expect from the crit effect: The heal part is increased by 3%, and so is the shield part. No different than how things were before (except for the fact that our mastery works different now).
+
+Atonement again
+~~~~~~~~~~~~~~~
+
+Let's take another look at our old friend the Atonement.
+
+First off, we have the issue of our Smite crit. When you try it out a bit you find that indeed what we would expect happens: There is a 3% increase on top of the double damage of smite, so a 10k smite would have turned into a 20.6k smite.
+
+Now is when things start getting interesting. Here is what happened in one of my smites that critted:
+
+- The Smite damage was 45489. That means the original Smite damage would have been :math:`45489/2/1.03 = 22082`.
+- The corresponding atonement heal from that crit was 25947. I would have expected it to be a 10.755% increase (heal mastery) on a 3% increase of the original smite damage of 22082. That would have been :math:`22082\times 1.03\times 1.10755 = 24457`. This contains essentially two more 3% factors!
+- The resulting DA shield was 31527, which is exactly a 21.5% increase (shield mastery) on 25947. So the shield does not get an extra 3% factor.
+
+So altogether, what would have been a heal H(1+M) if there was no crit has turned into:
+
+.. math:: H(1+M)1.03^3 + H(1+M)1.03^3\times(1+M) = H 1.03^3 (1+M)(2+M)
+
+Maybe a minor thing, but it does mean for instance that when a Penance crits, it would have done 6% more healing if it had been used offensively vs if it had been used as a heal.
+
+TL;DR
+-----
+
+Here's a summary of the main points:
+
+1. When Disc priests crit, they do a heal similar to what they would have done normally, plus an extra shield for the same amount.
+2. The Crit Effect meta increases the amount of that heal by 3% when it has critted. This indirectly also increases the shield part by 3%, since it is based off the amount of the heal. So the overall amount we get from the critting heal is 3% more than what it would have been without the meta gem. This is just as it was before 5.2
+3. When a spell that would have given atonement crits, the crit effect meta appears to act three times in a row, for a combined effect of a 1.0927 factor, or a 9.27% increase, on that heal. The same factor is reflected in the corresponding DA shield, as it is based on that heal. This is an overall 9.27% increase on the heal amount when compared to not using the meta gem, and in the case of Penance it's a 6.1% increase compared to using Penance as a heal.
+
+To put it simply, regular heals single-dip in the crit effect meta, while atonement heals triple-dip in it.

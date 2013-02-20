@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Crit Effect Meta in 5.2 &mdash; Heal Notes</title>
+    
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Heal Notes" href="index.html" />
+    <link rel="prev" title="5.2 Discworld" href="5.2Disc.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">Heal Notes</a></div>
+        <div class="rel">
+          <a href="5.2Disc.html" title="5.2 Discworld"
+             accesskey="P">previous</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="crit-effect-meta-in-5-2">
+<h1>Crit Effect Meta in 5.2<a class="headerlink" href="#crit-effect-meta-in-5-2" title="Permalink to this headline">¶</a></h1>
+<p>Now that the new changes for Disc are in the PTR, I took the opportunity to look at how the <a class="reference external" href="http://www.wowhead.com/item=76885">crit effect meta</a> works with the new Divine Aegis. For those of you interested in just the results, head over to our <a class="reference internal" href="#tl-dr">TL;DR</a>. But the gist of it is that in 5.2, atonement heals triple-dip into the 3% crit effect of the meta.</p>
+<div class="section" id="the-ways-of-old">
+<h2>The ways of old<a class="headerlink" href="#the-ways-of-old" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s start with how the Crit Meta effect worked before 5.2. First off, a crit heal heals for twice the normal amount, so far so good. The crit meta gem was enhancing this effect by an extra 3%. So if a normal heal would have been 10k, a crit heal would end up being:</p>
+<div class="math">
+\[10k \times 2 \times 1.03 = 20.6k\]</div>
+<p>so overall a 2.06 factor from the base heal. Now, on top of that we were getting our old Divine Aegis proc, which provided us with a shield equal to 50% of the crit heal, modified further by our mastery. I will assume for this example that I have 33.61% mastery, to match the mastery rating that the priest I was using in the PTR has. This increases the shield amount by a factor of 1.3361, resulting in 66.8% of the heal turned into a shield. This would be an amount equal to 13.76k, for a total crit effect of 34.36k, or 3.436 factor from a regular heal.</p>
+<p>Let&#8217;s try to get an equation for it: If H is the base heal amount, and M is our mastery percent, then the crit heal is equal to <span class="math">\(H\times 2.06\)</span>, and the shield adds to that <span class="math">\(H\times 2.06\times 0.5\times(1+M)\)</span>, so we end up with:</p>
+<div class="math">
+\[H\bigl(2.06 + 2.06\times 0.5\times (1+M)\bigr) = H\bigl(3.09 + 1.03\times M\bigr)\]</div>
+<p>If we further want to average this out, taking into account our crit chance, we end up with a formula for the average heal:</p>
+<div class="math">
+\[(1-C)H + C\times H\bigl(3.09 + 1.03\times M\bigr) = H\bigl(1 + 2.09C + 1.03 C M \bigr)\]</div>
+<div class="section" id="atonement">
+<h3>Atonement<a class="headerlink" href="#atonement" title="Permalink to this headline">¶</a></h3>
+<p>Atonement had a funny way to interact with the crit effect meta, due to its nature. Recall that any Smite for example will translate to a heal of the same amount of on a nearby target. If the Smite crits, that means the heal crits, and places a corresponding divine aegis proc. But because of the two-step process, there was some double-dipping going on.</p>
+<p>To illustrate, suppose that Smite would normally do 10k damage, and would hence translate to a 10k heal via atonement. Now, if that Smite crits, then instead of doing 20k damage, it would actually do <span class="math">\(20k\times 1.03 = 20.6k\)</span> because of the crit effect meta. when that goes to be translated into a heal, it receives a further 1.03 multiplier, again because of the crit effect meta: <span class="math">\(20.6k\times 1.03 = 21218\)</span>. Finally, it&#8217;s this last value that is further used to compute the divine aegis amount, for another 14173 shield, giving us a total heal amount of 35391. Compare this to the 34360 that we got on the regular heals, it&#8217;s 3% more.</p>
+<p>The final formula for the average amount of heal would end up being:</p>
+<div class="math">
+\[H\bigl(1 + 2.1827C + 1.0609 C M \bigr)\]</div>
+<p>Compare it with the earlier formula for our normal heals:</p>
+<div class="math">
+\[H\bigl(1 + 2.09C + 1.03 C M \bigr)\]</div>
+<p>The difference is in fact rather small, in the order of 0.8-1.6% depending on your critical strike chance. But it&#8217;s there, and it&#8217;s worth noting.</p>
+</div>
+</div>
+<div class="section" id="make-way-for-the-new-ways">
+<h2>Make way for the new ways<a class="headerlink" href="#make-way-for-the-new-ways" title="Permalink to this headline">¶</a></h2>
+<p>I need to get better at my section titles. Anyway, let&#8217;s see how all this plays out in patch 5.2, with the changes to Divine Aegis that have been announced. First the big change:</p>
+<blockquote>
+<div>When a Disc Priest heal crits, it does not heal for double the amount. Instead, it heals for the normal amount, but creates a Divine Aegis shield equal to the heal, scaled as appropriately by our mastery.</div></blockquote>
+<p>And don&#8217;t forget that our mastery is now broken up in two parts, one that increases our heals and another that increases our shields. The 33.61% mastery that my priest has before 5.2 will become a 10.755% increase in our healing, and a 21.5% increase in our shields.</p>
+<p>Now let&#8217;s see what happens when we have the crit meta on. I ran extensive checks earlier, and the results were the following:</p>
+<ol class="arabic simple">
+<li>If your spell would have healed for 10k normally, and it crits, the heal portion receives the 3% crit effect from the meta, so your spell would heal for 10.3k.</li>
+<li>The DA shield is equal to exactly this extra heal amount, further buffed by the shield mastery: <span class="math">\(10.3k\times 1.215 = 12.51k\)</span>. So the overall crit effect would be the sum of those two.</li>
+</ol>
+<p>Overall, let us denote by M our heal mastery (so 2M is our shield mastery), and suppose a heal would originally have healed for H before any additions. Then that heal would heal for H(1+M) because of our mastery. If that heal crits, then it would heal for <span class="math">\(1.03\times H\times(1+M)\)</span>, and place a shield for <span class="math">\(1.03\times H\times(1+M)(1+M)\)</span>, for a combined effect of:</p>
+<div class="math">
+\[H\times 1.03\times(1+M)(2+M)\]</div>
+<p>If we want to include the crit chance, and get a formula for the average healing, it would be:</p>
+<div class="math">
+\[(1-C)H + C H \times 1.03\times(1+M)(2+M)\]</div>
+<p>aaand I&#8217;ll just leave it like that because I&#8217;m not sure I can simplify it much further. But this is more or less what we would expect from the crit effect: The heal part is increased by 3%, and so is the shield part. No different than how things were before (except for the fact that our mastery works different now).</p>
+<div class="section" id="atonement-again">
+<h3>Atonement again<a class="headerlink" href="#atonement-again" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s take another look at our old friend the Atonement.</p>
+<p>First off, we have the issue of our Smite crit. When you try it out a bit you find that indeed what we would expect happens: There is a 3% increase on top of the double damage of smite, so a 10k smite would have turned into a 20.6k smite.</p>
+<p>Now is when things start getting interesting. Here is what happened in one of my smites that critted:</p>
+<ul class="simple">
+<li>The Smite damage was 45489. That means the original Smite damage would have been <span class="math">\(45489/2/1.03 = 22082\)</span>.</li>
+<li>The corresponding atonement heal from that crit was 25947. I would have expected it to be a 10.755% increase (heal mastery) on a 3% increase of the original smite damage of 22082. That would have been <span class="math">\(22082\times 1.03\times 1.10755 = 24457\)</span>. This contains essentially two more 3% factors!</li>
+<li>The resulting DA shield was 31527, which is exactly a 21.5% increase (shield mastery) on 25947. So the shield does not get an extra 3% factor.</li>
+</ul>
+<p>So altogether, what would have been a heal H(1+M) if there was no crit has turned into:</p>
+<div class="math">
+\[H(1+M)1.03^3 + H(1+M)1.03^3\times(1+M) = H 1.03^3 (1+M)(2+M)\]</div>
+<p>Maybe a minor thing, but it does mean for instance that when a Penance crits, it would have done 6% more healing if it had been used offensively vs if it had been used as a heal.</p>
+</div>
+</div>
+<div class="section" id="tl-dr">
+<h2>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s a summary of the main points:</p>
+<ol class="arabic simple">
+<li>When Disc priests crit, they do a heal similar to what they would have done normally, plus an extra shield for the same amount.</li>
+<li>The Crit Effect meta increases the amount of that heal by 3% when it has critted. This indirectly also increases the shield part by 3%, since it is based off the amount of the heal. So the overall amount we get from the critting heal is 3% more than what it would have been without the meta gem. This is just as it was before 5.2</li>
+<li>When a spell that would have given atonement crits, the crit effect meta appears to act three times in a row, for a combined effect of a 1.0927 factor, or a 9.27% increase, on that heal. The same factor is reflected in the corresponding DA shield, as it is based on that heal. This is an overall 9.27% increase on the heal amount when compared to not using the meta gem, and in the case of Penance it&#8217;s a 6.1% increase compared to using Penance as a heal.</li>
+</ol>
+<p>To put it simply, regular heals single-dip in the crit effect meta, while atonement heals triple-dip in it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="TheoryCraftingBasics.html">So you want to Healycraft?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheColorOfHeals.html">The Color Of Heals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheHoTFactor.html">The HoT Factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2Disc.html">5.2 Discworld</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Crit Effect Meta in 5.2</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="search.html" method="get">
+            <input type="text" name="q" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="5.2Disc.html" title="5.2 Discworld"
+             >previous</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+            <br/>
+            <a href="_sources/5.2CritMeta.txt"
+               rel="nofollow">Show Source</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2013, Heal Adinne.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
