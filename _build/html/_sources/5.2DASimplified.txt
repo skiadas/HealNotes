@@ -1,0 +1,67 @@
+The 5.2 DA/Mastery change simplified
+====================================
+
+I see so many Disc Priests complain that Blizzard just cut their crit heals in half, I thought it would be time to clear things a bit. So I'm going to put it as plainly as possible hoping it will sink in:
+
+    *Our heal and shield numbers are very similar to before. The shield you get from a crit is about the same as you would have gotten under the old system. Similarly, the **average** healing you do is about the same as before. The difference is that instead of doing little regular heals and a large heal on a crit, you do bigger regular heals but no extra healing on crits. This averages out to a large extent.*
+
+You want some numbers? Let's have some numbers!
+
+But before the numbers, just in case you feel like skipping the longer details, the following table summarizes the results for a sample starting base heal of 10k, and for two hypothetical priests, one focusing more on critical strike the other more on mastery.
+
+=========  ====== =======   ======  =======
+Who        Critical Alice     Mastery Bob
+---------  --------------   ---------------
+When       Pre5.2 Post5.2   Pre5.2  Post5.2
+=========  ====== =======   ======  =======
+Avg Heal    12000   11280    11500    11920
+DA Shield   14000   14170    16000    16500
+Avg PW:S    14000   15000    16000    15900
+=========  ====== =======   ======  =======
+
+These numbers tell us two things:
+
+1. The DA shields that the new DA system creates are actually slightly larger than the old system, even more so the more mastery you have.
+2. The average healing you do will in fact go **up** if you were focussing a lot on mastery, and will only go down a bit (about 6%) if you had completely neglected mastery and had fully focussed on Critical Strike.
+3. The average amount of PW:S will go up if you have focused on crit, and will stay about the same if you have focused on mastery.
+
+Let's ask Alice
+---------------
+
+Critical Alice is a kind-hearted Disc Priest who loves her big crits. She has invested all out in crit rating, and in raid she's at around 20%. At the same time, she's got about 40% mastery: The 20% she gets from her mother at birth, and extra 12.5% from her fellow Paladin's Blessing of Might, and an extra 7.5% from 1800 rating. That's in the old system. Let's look at her healing.
+
+Alice pre-5.2
+~~~~~~~~~~~~~
+Let's suppose for simplicity that we are talking about a heal that would normally do 10k healing. The exact amount doesn't matter, all computations are proportional to it, but it will help us keep things concrete. I will also discount the crit effect meta to keep the discussion simple.
+
+First let's compute the size of the shield when she does crit. A crit heal would have been equal to 20k, hence the divine aegis shield from it would have been :math:`20k\times 0.5\times 1.40`, since her 40% mastery would increase the divine aegis effect by 40%. This equals a **14k shield**.
+
+Now let's compute her average healing. Most of the times (80% of them) she heals for 10k, but 20% of the times she heals for 20k. Her average healing would therefore be:
+
+.. math:: 0.8 \times 10k + 0.2 \times 20k = 12k
+
+So she would be doing **12k average healing** from casting that spell.
+
+Alice post-5.2
+~~~~~~~~~~~~~~
+Now let's see how Alice would do with the new system. In the new system her crit percent is still at 20%, but her mastery is now split in two parts: One is a 12.8% increase in her heals, another is a 25.6% increase in her shields.
+
+So what happens now to Alice's 10k heal? It is increased by 12.8%, so it is actually equal to 11.28k. Now, when Alice crits, she creates a shield for that amount, scaled by her shield mastery. This would equal :math:`11.28k\times 1.256 = 14168`. So now Alice produces a **14168 shield** when she crits, a tad larger than before.
+
+What about her average healing? Since her heals are the same whether she crits or not, she would have **11280 average healing**. This is 6% smaller than her pre-5.2 average healing, so it is a slight nerf, but hardly something to scream about.
+
+Before we summarize, let's take a look at another friend of hours:
+
+Mastery Bob
+~~~~~~~~~~~
+
+Bob loves his mastery, he went all out on mastery instead of crit. He therefore only has 15% crit, but a whopping 60% mastery. Let's see how he would fare. The base heal of 10k, when it crits, would provide a **16k shield**. At the same time, his average healing would be:
+
+.. math:: 0.85\times 10k + 0.15 \times 20k = 11.5k
+
+So he does **11.5k average healing**.
+
+In 5.2, he would have 19.2% increase to his heals, and 38.4% increase to his shields. Therefore what used to be a 10k heal will now be a 11.92k heal, and that would also be his **average healing, 11.92k**. His shield on the other hand would be a 38.4% increase on that, namely **16497 shield**.
+
+So Bob's shields went up by 3%, and his average healing also went up by 3.6%.
+

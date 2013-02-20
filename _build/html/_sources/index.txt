@@ -16,6 +16,7 @@ Contents:
    TheHoTFactor
    5.2Disc
    5.2CritMeta
+   5.2DASimplified
 
 Indices and tables
 ==================
