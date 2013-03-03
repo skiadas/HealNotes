@@ -14,9 +14,9 @@ Contents:
    TheoryCraftingBasics
    TheColorOfHeals
    TheHoTFactor
-   5.2Disc
    5.2CritMeta
    5.2DASimplified
+   ArchangelSmiteHealing
 
 Indices and tables
 ==================
